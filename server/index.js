@@ -1,12 +1,13 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import client from './db.js';
-
+import cors from 'cors'; // Import CORS 
 dotenv.config();
 
 const PORT = process.env.PORT;
 
 const app = express();
+app.use(cors());   // use core
 app.use(express.json());
 
 app.listen(PORT, () => {
@@ -34,7 +35,7 @@ app.get('/posts/:id', async (req, res) => {
     const { id } = req.params;
     try {
         const result = await client.query('select * from posts where id= $1', [id]);
-        res.json(result.rows);
+        res.json(result.rows[0]);
     } catch (error) {
         res.status(500).send(error.message)
     }
@@ -50,5 +51,4 @@ app.post('/posts', async (req, res) => {
         res.status(500).send(error.message)
     }
 })
-
 
