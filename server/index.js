@@ -2,7 +2,10 @@ import express from 'express'
 import dotenv from 'dotenv'
 import client from './db.js';
 
-config();
+dotenv.config();
+
+const PORT = process.env.PORT;
+
 const app = express();
 app.use(express.json());
 
