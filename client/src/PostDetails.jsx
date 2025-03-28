@@ -19,7 +19,7 @@ function PostDetails() {
         setPost(res.data);
       } catch (error) {
         console.error("Error fetching post:", error);
-        setPost(null); // Ensures the "Post not found" message appears
+        setPost(null); // Ensures the "Post not found" message appears.
       } finally {
         setLoading(false);
       }
