@@ -10,14 +10,16 @@ function PostDetails() {
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(true);
 
+
   useEffect(() => {
     const fetchPost = async () => {
       try {
         console.log("Fetching post with ID:", id);
-        const res = await axios.get(`${API_URL}/posts/${id}`);
+       const res = await axios.get(`${API_URL}/posts/${id}`);
         setPost(res.data);
       } catch (error) {
         console.error("Error fetching post:", error);
+        setPost(null); // Ensures the "Post not found" message appears
       } finally {
         setLoading(false);
       }
@@ -45,8 +47,8 @@ function PostDetails() {
       <div className="bg-white p-4 ">
         <p><strong>Author:</strong> {post.author}</p>
         <p><strong>Content:</strong> {post.content}</p>
-        <p><strong>Date:</strong> {new Date(post.date).toLocaleDateString()}</p>
-        {post.cover && <img src={post.cover} alt="Post Cover" className="w-60" />}
+        <p><strong>Date:</strong> {post.date ? new Date(post.date).toLocaleDateString() : "N/A"}</p>
+        {post.cover ? <img src={post.cover} alt="Post Cover" className="w-60" /> : <p>No cover image available</p>}
       </div>
 
       <div className="flex gap-2 mt-4">
