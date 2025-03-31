@@ -22,6 +22,19 @@ function PostDetails() {
     };
     fetchPost();
   }, [id, APIURL]);
+  
+  const handleDelete = async () => {
+    try {
+      await axios.delete(`${APIURL}posts/${id}`);
+      navigate("/");
+    } catch (error) {
+      console.error("Error deleting post:", error);
+    }
+  };
+
+  if (error) {
+    return <p className="text-red-500 text-center">{error}</p>;
+  }
 
   if (!post) {
     return <p className="text-center text-white">Loading post details...</p>;
@@ -43,6 +56,12 @@ function PostDetails() {
       <p className="text-gray-700 leading-relaxed">Contant :{post.content}</p>
 
       <div className="flex gap-2 mt-4">
+      <button 
+          onClick={handleDelete} 
+          className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
+        >
+          Delete Post
+        </button>
         <button 
           onClick={() => navigate("/")} 
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
