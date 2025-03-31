@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Home from "./Home";
-import PostDetails from "./PostDetails";
-import UpdatePost from "./UpdatePost";
+import PostDetails from "./components/PostDetails";
+import UpdatePost from "./components/UpdatePost";
 import CreatePost from "./components/CreatePost";
 
 function App() {
