@@ -12,7 +12,7 @@ function CardList() {
     const fetchPosts = async () => {
       setLoading(true);
       try {
-        await new Promise((resolve) => setTimeout(resolve, 10));
+        await new Promise((resolve) => setTimeout(resolve, 1000));
         const res = await axios.get(`${APIURL}posts`);
         setPosts(res.data);
       } catch (error) {
