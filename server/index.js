@@ -58,3 +58,20 @@ app.post("/posts", async (req, res) => {
     res.status(500).send(`Error creating post: ${error.message}`);
   }
 });
+
+app.delete("/posts/:id", async (req, res) => {
+  const { id } = req.params; 
+  try {
+    const result = await client.query("DELETE FROM posts WHERE id = $1 RETURNING *", [id]);
+
+    if (result.rowCount > 0) {
+      res.json({ message: "Post deleted successfully" });
+    } else {
+      res.status(404).json({ message: "Post not found" });
+    }
+  } catch (err) {
+    console.error("Error deleting post:", err);
+    res.status(500).send(err.message);
+  }
+});
+

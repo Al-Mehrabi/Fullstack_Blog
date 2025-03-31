@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const APIURL = import.meta.env.VITE_API_URL;
 
@@ -34,8 +35,17 @@ function CardList() {
             className="w-full h-48 object-cover rounded-lg mb-4 transition-all duration-300 hover:scale-105"
           />
           <p className="text-gray-600 text-sm">{post.content}</p>
+
+          <Link
+            to={`/post/${post.id}`}
+            className="bg-black border text-white border-black font-bold py-3 px-6 rounded-3xl shadow-lg transition-transform duration-300 hover:translate-y-1 hover:shadow-2xl"
+          >
+            PostDetails
+          </Link>
         </div>
+
       ))}
+
     </div>
   );
 }
