@@ -22,7 +22,7 @@ function PostDetails() {
     };
     fetchPost();
   }, [id, APIURL]);
-  
+
   const handleDelete = async () => {
     try {
       await axios.delete(`${APIURL}posts/${id}`);
@@ -42,28 +42,32 @@ function PostDetails() {
 
   return (
     <div className="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow-lg">
-     
       <h1 className="text-4xl font-bold text-gray-800 mb-4">Post Details</h1>
 
-      <h2 className="text-4xl font-bold text-gray-800 mb-4">Title :{post.title}</h2>
-      <p className="text-1xl font-bold text-gray-800 mb-4">Date: {post.date}</p>
-   
+      <h2 className="text-4xl font-bold text-gray-800 mb-4">
+        Title :{post.title}
+      </h2>
+      <p className="text-1xl font-bold text-gray-800 mb-4">
+        Date:{" "}
+        {post.date ? new Date(post.date).toLocaleString() : "No date available"}
+      </p>
+
       <img
         src={post.cover}
         alt={post.title}
-        className="w-full h-96 object-cover rounded-lg mb-4"
+        className="w-full h-96 object-contain rounded-lg mb-4 "
       />
-      <p className="text-gray-700 leading-relaxed">Contant :{post.content}</p>
+      <p className="text-gray-700 leading-relaxed">Content :{post.content}</p>
 
       <div className="flex gap-2 mt-4">
-      <button 
-          onClick={handleDelete} 
+        <button
+          onClick={handleDelete}
           className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded"
         >
           Delete Post
         </button>
-        <button 
-          onClick={() => navigate("/")} 
+        <button
+          onClick={() => navigate("/")}
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
         >
           Back to Home

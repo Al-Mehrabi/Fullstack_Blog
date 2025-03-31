@@ -8,14 +8,12 @@ function App() {
   return (
     <Router>
       <div className="bg-primary  min-h-screen ">
-        <div className="container mx-auto p-6">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/post/:id" element={<PostDetails />} />
-            <Route path="/update/:id" element={<UpdatePost />} />
-            <Route path="/createpost" element={<CreatePost />} />
-          </Routes>
-        </div>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/post/:id" element={<PostDetails />} />
+          <Route path="/update/:id" element={<UpdatePost />} />
+          <Route path="/createpost" element={<CreatePost />} />
+        </Routes>
       </div>
     </Router>
   );
